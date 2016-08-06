@@ -122,6 +122,14 @@ int main( int argc, char* args[] )
                     {
                         quit = true;
                     }
+                    else if( e.type == SDL_KEYDOWN )
+                    {
+                        //Increase alpha on w
+                        if( e.key.keysym.sym == SDLK_ESCAPE )
+                        {
+                            quit = true;
+                        }
+                    }
                 }
 
                 //Clear screen
