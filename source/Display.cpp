@@ -7,7 +7,7 @@
 struct Display {
 	int width = 0;
 	int height = 0;
-	const char *title = 0;
+	std::string title;
 	bool fullScreen = false;
 
 	SDL_Color backgroundColor = {0, 0, 0, 255};
@@ -20,10 +20,15 @@ struct Display {
 
 		handler->width = _width;
 		handler->height = _height;
-		handler->title = _title.c_str();
+		handler->title = _title;
 		handler->fullScreen = false;
-		handler->backgroundColor = (SDL_Color){255, 162, 0, 255};
-    	handler->window = SDL_CreateWindow( handler->title, 
+		SDL_Color color;
+		color.r = 255;
+		color.g = 162;
+		color.b = 0;
+		color.a = 255;
+		handler->backgroundColor = color;
+    	handler->window = SDL_CreateWindow( "hello",//handler->title.c_str(), 
     										SDL_WINDOWPOS_CENTERED, 
     										SDL_WINDOWPOS_CENTERED, 
     										handler->width, 
@@ -42,6 +47,7 @@ struct Display {
 	        	SDL_RenderSetLogicalSize(handler->renderer, FIXED_WIDTH, FIXED_HEIGHT);
 	        }
     	}
+    	return success;
 	}
 
 	static void deleteDisplay(Display* display){

@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <string>
 #include "App.cpp"
 #include "Display.cpp"
 #include "constants.cpp"
@@ -11,7 +12,7 @@ int main( int argc, char* args[] ){
 	app.initializeApp();
 
 	Display display;
-	Display::initializeDisplay(&display, "Hello SDL!", FIXED_WIDTH, FIXED_HEIGHT);
+	Display::initializeDisplay(&display, std::string("Hello SDL!"), FIXED_WIDTH, FIXED_HEIGHT);
 
 	bool quit = false;
     SDL_Event e;
@@ -35,9 +36,10 @@ int main( int argc, char* args[] ){
                 }
             }
         }
-        printf("Display declared\n");
-        Display::clearDisplay(&display);
-        Display::refreshWindow(&display);
+        if(&display){
+        	Display::clearDisplay(&display);
+        	Display::refreshWindow(&display);
+    	}
     }
 
 
