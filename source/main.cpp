@@ -12,7 +12,7 @@ int main( int argc, char* args[] ){
 	app.initializeApp();
 
 	Display display;
-	Display::initializeDisplay(&display, std::string("Hello SDL!"), FIXED_WIDTH, FIXED_HEIGHT);
+	Display::initializeDisplay(&display, std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
 	bool quit = false;
     SDL_Event e;

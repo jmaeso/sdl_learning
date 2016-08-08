@@ -8,7 +8,7 @@ struct Display {
 	int width = 0;
 	int height = 0;
 	std::string title;
-	bool fullScreen = false;
+	SDL_WindowFlags screenMode = SDL_WINDOW_SHOWN;
 
 	SDL_Color backgroundColor = {0, 0, 0, 255};
 	SDL_Window* window = 0;
@@ -17,23 +17,24 @@ struct Display {
 	//METHODS
 	static bool initializeDisplay(Display* handler, std::string _title, int _width, int _height) {
 		bool success = true;
-
-		handler->width = _width;
-		handler->height = _height;
+		SDL_DisplayMode current;
+		int should_be_zero = SDL_GetCurrentDisplayMode(0, &current);
+	    if(should_be_zero != 0)
+		    printf("Could not get display mode for video display #%d: %s", 0, SDL_GetError());
+	    else{
+	    	handler->width = (DEFAULT_WIDTH == _width) ? current.w : _width;
+	    	handler->height = (DEFAULT_HEIGHT == _height) ? current.h : _height;
+	    	handler->screenMode = ((DEFAULT_WIDTH == _width) && (DEFAULT_HEIGHT == _height)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN;
+	    }
 		handler->title = _title;
-		handler->fullScreen = false;
-		SDL_Color color;
-		color.r = 255;
-		color.g = 162;
-		color.b = 0;
-		color.a = 255;
+		SDL_Color color = {.r = 255, .g = 162, .b = 0, .a = 255};
 		handler->backgroundColor = color;
-    	handler->window = SDL_CreateWindow( "hello",//handler->title.c_str(), 
+    	handler->window = SDL_CreateWindow( handler->title.c_str(), 
     										SDL_WINDOWPOS_CENTERED, 
     										SDL_WINDOWPOS_CENTERED, 
     										handler->width, 
     										handler->height, 
-    										SDL_WINDOW_SHOWN );
+    										handler->screenMode );
     	if(handler->window == NULL){
     		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
         	success = false;
