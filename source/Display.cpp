@@ -45,7 +45,7 @@ struct Display {
 	            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
 	            success = false;
 	        }else{
-	        	SDL_RenderSetLogicalSize(handler->renderer, FIXED_WIDTH, FIXED_HEIGHT);
+	        	SDL_RenderSetLogicalSize(handler->renderer, handler->width, handler->height);
 	        }
     	}
     	return success;
