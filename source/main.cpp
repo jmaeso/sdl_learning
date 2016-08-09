@@ -5,6 +5,9 @@
 #include "App.cpp"
 #include "Display.cpp"
 #include "constants.cpp"
+#include "Texture.h"
+#include "Sprite.h"
+#include "Vec2.cpp"
 
 
 int main( int argc, char* args[] ){
@@ -15,6 +18,11 @@ int main( int argc, char* args[] ){
 	Display::initializeDisplay(&display, std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
 	bool quit = false;
+
+	Texture t("../resources/bg.png", &display.renderer);
+	Vec2 position = {0, 0};
+	Sprite bg(t, position);
+
     SDL_Event e;
     //While application is running
     while( !quit )
@@ -36,8 +44,10 @@ int main( int argc, char* args[] ){
                 }
             }
         }
+        bg.update();
         if(&display){
         	Display::clearDisplay(&display);
+        	bg.draw();
         	Display::refreshWindow(&display);
     	}
     }
