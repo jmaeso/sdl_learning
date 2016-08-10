@@ -1,3 +1,10 @@
+#ifdef _WIN32
+	#pragma comment(lib,"SDL2.lib")
+	#pragma comment(lib,"SDL2_image.lib")
+	#pragma comment(lib,"SDL2_ttf.lib")
+	#pragma comment(lib,"SDL2_mixer.lib")
+	#pragma comment(lib,"SDL2main.lib")
+#endif // _WIN32
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
@@ -20,7 +27,7 @@ int main( int argc, char* args[] ){
 	bool quit = false;
 
 	Texture t(std::string("../resources/bg.png"), display.renderer);
-	Vec2 position = {0, 0};
+	Vec2 position;
 	Sprite bg(t, position);
 
     SDL_Event e;

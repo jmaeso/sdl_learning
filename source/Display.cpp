@@ -27,7 +27,7 @@ struct Display {
 	    	handler->screenMode = ((DEFAULT_WIDTH == _width) && (DEFAULT_HEIGHT == _height)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN;
 	    }
 		handler->title = _title;
-		SDL_Color color = {.r = 255, .g = 162, .b = 0, .a = 255};
+		SDL_Color color = {255, 162,0,255};
 		handler->backgroundColor = color;
     	handler->window = SDL_CreateWindow( handler->title.c_str(), 
     										SDL_WINDOWPOS_CENTERED, 
