@@ -5,7 +5,7 @@ Sprite::Sprite(){
 }
 
 Sprite::Sprite(Texture &source, Vec2 _position){
-	texture = source;
+	texture = source.texture;
 }
 
 Sprite::~Sprite(){
