@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+#include <cstdio>
 
 struct App {
 	bool initializeApp() {
@@ -38,7 +39,7 @@ struct App {
 	}
 
 	void closeApp() {
-		Mix_Quit();	
+		Mix_Quit();
 		TTF_Quit();
 		IMG_Quit();
 		SDL_Quit();
