@@ -12,7 +12,8 @@ public:
 	int height;
 
 	Texture();
-	Texture(std::string path, SDL_Renderer* _renderer);
+	Texture(const Texture &copy);
+	Texture(std::string path, SDL_Renderer* _renderer); 
 	~Texture();
 	void free();
 	bool loadFromFile( std::string path, SDL_Renderer* renderer );

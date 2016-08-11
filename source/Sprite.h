@@ -16,7 +16,7 @@ public:
 
 	Sprite();
 	Sprite(Texture &_texture, Vec2 _position);
-	~Sprite();
+	virtual ~Sprite();
 
 	void draw();
 	void changeAlpha(int alpha);

@@ -17,8 +17,8 @@ struct Display {
 	//METHODS
 	static bool initializeDisplay(Display* handler, std::string _title, int _width, int _height) {
 		bool success = true;
-		SDL_DisplayMode current;
-		int should_be_zero = SDL_GetCurrentDisplayMode(0, &current);
+		SDL_DisplayMode current; 
+		int should_be_zero = SDL_GetCurrentDisplayMode(0, &current); 
 	    if(should_be_zero != 0)
 		    printf("Could not get display mode for video display #%d: %s", 0, SDL_GetError());
 	    else{
@@ -29,7 +29,7 @@ struct Display {
 		handler->title = _title;
 		SDL_Color color = {255, 165, 0, 255};
 		handler->backgroundColor = color;
-    	handler->window = SDL_CreateWindow( handler->title.c_str(), 
+    	handler->window = SDL_CreateWindow( handler->title.c_str(),
     										SDL_WINDOWPOS_CENTERED, 
     										SDL_WINDOWPOS_CENTERED, 
     										handler->width, 

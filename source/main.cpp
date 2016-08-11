@@ -22,15 +22,14 @@ int main( int argc, char* args[] ){
 	app.initializeApp();
 
 	Display display;
-	Display::initializeDisplay(&display, std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT);
+	Display::initializeDisplay(&display, std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT); 
 
 	bool quit = false;
 
-	Texture t(std::string("../resources/image.bmp"), display.renderer);
+	Texture text(std::string("../resources/image.bmp"), display.renderer);
 	Vec2 position{0, 0};
-	position.x = DEFAULT_WIDTH/2;
-	position.y = DEFAULT_HEIGHT/2;
-	Sprite bg(t, position);
+
+	Sprite bg(text, position); 
 
     SDL_Event e;
     //While application is running
@@ -53,10 +52,10 @@ int main( int argc, char* args[] ){
                 }
             }
         }
-        bg.update();
+    	bg.update(); //Sprite update
         if(&display){
         	Display::clearDisplay(&display);
-        	bg.draw();
+        	bg.draw(); //Sprite render
         	Display::refreshWindow(&display);
     	}
     }

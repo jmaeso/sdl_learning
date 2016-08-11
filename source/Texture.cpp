@@ -5,6 +5,13 @@ Texture::Texture(){
 	width = 0;
 	height = 0;
 }
+
+Texture::Texture(const Texture &copy){
+	texture = copy.texture;
+	renderer = copy.renderer;
+	width = copy.width;
+	height = copy.height;
+}
 	
 Texture::Texture(std::string path, SDL_Renderer* _renderer){
 	if(!loadFromFile(path, _renderer)){
@@ -14,6 +21,7 @@ Texture::Texture(std::string path, SDL_Renderer* _renderer){
 
 Texture::~Texture(){
 	free();
+	printf("Texture Destructor called\n");
 }
 
 void Texture::free(){
