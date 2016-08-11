@@ -27,7 +27,9 @@ int main( int argc, char* args[] ){
 	bool quit = false;
 
 	Texture t(std::string("../resources/image.bmp"), display.renderer);
-	Vec2 position;
+	Vec2 position{0, 0};
+	position.x = DEFAULT_WIDTH/2;
+	position.y = DEFAULT_HEIGHT/2;
 	Sprite bg(t, position);
 
     SDL_Event e;

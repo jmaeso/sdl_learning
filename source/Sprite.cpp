@@ -6,6 +6,9 @@ Sprite::Sprite(){
 
 Sprite::Sprite(Texture &source, Vec2 _position){
 	texture = source.texture;
+	position.x = _position.x;
+	position.y = _position.y;
+	scale = 1.0f;
 }
 
 Sprite::~Sprite(){
@@ -24,9 +27,11 @@ void Sprite::update(){
 	destination.w = width;
 	destination.h = height;
 	if(scale){
-		destination.w *= scale;
-		destination.y *= scale;
+		//destination.w *= scale;
+		//destination.y *= scale;
 	}
-	destination.x = position.x;
-	destination.y = position.y;
+	destination.x = this->position.x;
+	destination.y = this->position.y;
+	printf("Destination x: %i\n", destination.x);
+	printf("Destination y: %i\n", destination.y);
 }

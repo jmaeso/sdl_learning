@@ -27,7 +27,7 @@ struct Display {
 	    	handler->screenMode = ((DEFAULT_WIDTH == _width) && (DEFAULT_HEIGHT == _height)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN;
 	    }
 		handler->title = _title;
-		SDL_Color color = {255, 162,0,255};
+		SDL_Color color = {255, 165, 0, 255};
 		handler->backgroundColor = color;
     	handler->window = SDL_CreateWindow( handler->title.c_str(), 
     										SDL_WINDOWPOS_CENTERED, 
@@ -45,8 +45,8 @@ struct Display {
 	            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
 	            success = false;
 	        }else{
-	        	SDL_RenderSetLogicalSize(handler->renderer, handler->width, handler->height);
-	        	SDL_SetRenderDrawColor(handler->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	        	//SDL_RenderSetLogicalSize(handler->renderer, handler->width, handler->height);
+	        	//SDL_SetRenderDrawColor(handler->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	        }
     	}
     	return success;
@@ -64,8 +64,8 @@ struct Display {
 	}
 
 	static void fillDisplay(Display* handler, SDL_Color color){
-		SDL_RenderClear(handler->renderer);
 		SDL_SetRenderDrawColor(handler->renderer, color.r, color.g, color.b, color.a);
+		SDL_RenderClear(handler->renderer);
 	}
 
 	static void clearDisplay(Display* handler){
