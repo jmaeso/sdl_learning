@@ -26,7 +26,7 @@ int main( int argc, char* args[] ){
 
 	bool quit = false;
 
-	Texture t(std::string("../resources/bg.png"), display.renderer);
+	Texture t(std::string("../resources/image.bmp"), display.renderer);
 	Vec2 position;
 	Sprite bg(t, position);
 

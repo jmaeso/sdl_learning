@@ -46,6 +46,7 @@ struct Display {
 	            success = false;
 	        }else{
 	        	SDL_RenderSetLogicalSize(handler->renderer, handler->width, handler->height);
+	        	SDL_SetRenderDrawColor(handler->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	        }
     	}
     	return success;
@@ -63,8 +64,8 @@ struct Display {
 	}
 
 	static void fillDisplay(Display* handler, SDL_Color color){
-		SDL_SetRenderDrawColor(handler->renderer, color.r, color.g, color.b, color.a);
 		SDL_RenderClear(handler->renderer);
+		SDL_SetRenderDrawColor(handler->renderer, color.r, color.g, color.b, color.a);
 	}
 
 	static void clearDisplay(Display* handler){

@@ -32,7 +32,7 @@ bool Texture::loadFromFile( std::string path, SDL_Renderer* renderer ){
 		printf("Unable to load image: %s. SDL_Image error: %s\n. ", path.c_str(), IMG_GetError());
 	}else{
 		//Color key image
-		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) ); //SDL_MapRGB(format,R,G,B)
+		//SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) ); //SDL_MapRGB(format,R,G,B)
 		newTexture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
 		if(newTexture == NULL){
 			printf("Unable to create texture from: %s. SDL_Error: %s.\n", path.c_str(), SDL_GetError());
@@ -43,5 +43,7 @@ bool Texture::loadFromFile( std::string path, SDL_Renderer* renderer ){
 		SDL_FreeSurface( loadedSurface );
 	}
 	texture = newTexture;
+	SDL_DestroyTexture(newTexture);
+	newTexture = 0;
 	return texture != NULL;
 }
