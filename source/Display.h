@@ -19,4 +19,6 @@ struct Display {
 	void Fill(SDL_Color color);
 	void Clear();
 	void Refresh();
+	int getWidth() {return width;};
+	int getHeight() {return height;};
 };

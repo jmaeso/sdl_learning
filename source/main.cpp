@@ -20,14 +20,15 @@ int main( int argc, char* args[] ){
 	initializeApp();
 
 	Display display;
-	display.Init(std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT); 
+	display.Init(std::string("Hello SDL!"), 400, 400); 
 
 	bool quit = false;
 
 	//Texture texture(std::string("../resources/image.bmp"), display.renderer);
 	Vec2 position{0, 0};
 
-	Sprite bg(std::string("../resources/image.png"), display.renderer, position); 
+	Sprite bg(std::string("../resources/image.png"), &display, position);
+    bg.Center(); 
     
 
     SDL_Event e;

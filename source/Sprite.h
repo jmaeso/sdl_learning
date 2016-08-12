@@ -3,12 +3,13 @@
 #include <SDL2/SDL.h>
 #include "Vec2.cpp"
 #include <string>
+#include "Display.h"
 
 
 class Sprite{
 public:
 	SDL_Texture* texture;
-	SDL_Renderer* renderer;
+	Display* display;
 	SDL_Rect destination;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 
@@ -21,7 +22,7 @@ public:
 
 	Sprite();
 	Sprite(const Sprite &copy);
-	Sprite(std::string path, SDL_Renderer* _renderer, Vec2 _position);
+	Sprite(std::string path, Display* _display, Vec2 _position);
 	~Sprite();
 	void free();
 
@@ -30,5 +31,9 @@ public:
 	void update();
 
 	void Center();
+	void CenterX();
+	void CenterY();
+	void SnapRight();
+	void SnapLeft();
 	void changeAlpha(int alpha);
 };
