@@ -2,23 +2,33 @@
 
 #include <SDL2/SDL.h>
 #include "Vec2.cpp"
-#include "Texture.h"
+#include <string>
 
 
-class Sprite : public Texture {
+class Sprite{
 public:
+	SDL_Texture* texture;
+	SDL_Renderer* renderer;
 	SDL_Rect destination;
-
-	float scale = 0.0f;
-	float angle = 0.0f;
-	Vec2 position;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
 
-	Sprite();
-	Sprite(Texture &_texture, Vec2 _position);
-	virtual ~Sprite();
+	int width;
+	int height;
+	float scale;
+	float angle;
 
+	Vec2 position;
+
+	Sprite();
+	Sprite(const Sprite &copy);
+	Sprite(std::string path, SDL_Renderer* _renderer, Vec2 _position);
+	~Sprite();
+	void free();
+
+	bool loadTexture(std::string path);
 	void draw();
-	void changeAlpha(int alpha);
 	void update();
+
+	void Center();
+	void changeAlpha(int alpha);
 };

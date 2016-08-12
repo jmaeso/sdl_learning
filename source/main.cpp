@@ -7,29 +7,28 @@
 #endif // _WIN32
 
 #include <stdio.h>
-#include <SDL2/SDL.h>
 #include <string>
-#include "App.cpp"
-#include "Display.cpp"
+#include "App.h"
+#include "Display.h"
 #include "constants.cpp"
-#include "Texture.h"
 #include "Sprite.h"
 #include "Vec2.cpp"
 
 
 int main( int argc, char* args[] ){
-	App app;
-	app.initializeApp();
+
+	initializeApp();
 
 	Display display;
-	Display::initializeDisplay(&display, std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT); 
+	display.Init(std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT); 
 
 	bool quit = false;
 
-	Texture text(std::string("../resources/image.bmp"), display.renderer);
+	//Texture texture(std::string("../resources/image.bmp"), display.renderer);
 	Vec2 position{0, 0};
 
-	Sprite bg(text, position); 
+	Sprite bg(std::string("../resources/image.png"), display.renderer, position); 
+    
 
     SDL_Event e;
     //While application is running
@@ -54,16 +53,15 @@ int main( int argc, char* args[] ){
         }
     	bg.update(); //Sprite update
         if(&display){
-        	Display::clearDisplay(&display);
+        	display.Clear();
         	bg.draw(); //Sprite render
-        	Display::refreshWindow(&display);
+        	display.Refresh();
     	}
     }
 
+	display.Delete();
 
-	Display::deleteDisplay(&display);
-
-	app.closeApp();
+	closeApp();
 
 	return 0;
 }

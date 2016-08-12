@@ -1,78 +1,63 @@
-#pragma once
+#include "Display.h"
 
-#include <SDL2/SDL.h>
-#include <string>
-#include "constants.cpp"
-
-struct Display {
-	int width = 0;
-	int height = 0;
-	std::string title;
-	SDL_WindowFlags screenMode = SDL_WINDOW_SHOWN;
-
-	SDL_Color backgroundColor = {0, 0, 0, 255};
-	SDL_Window* window = 0;
-	SDL_Renderer* renderer = 0;
-
-	//METHODS
-	static bool initializeDisplay(Display* handler, std::string _title, int _width, int _height) {
-		bool success = true;
-		SDL_DisplayMode current; 
-		int should_be_zero = SDL_GetCurrentDisplayMode(0, &current); 
-	    if(should_be_zero != 0)
-		    printf("Could not get display mode for video display #%d: %s", 0, SDL_GetError());
-	    else{
-	    	handler->width = (DEFAULT_WIDTH == _width) ? current.w : _width;
-	    	handler->height = (DEFAULT_HEIGHT == _height) ? current.h : _height;
-	    	handler->screenMode = ((DEFAULT_WIDTH == _width) && (DEFAULT_HEIGHT == _height)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN;
-	    }
-		handler->title = _title;
-		SDL_Color color = {255, 165, 0, 255};
-		handler->backgroundColor = color;
-    	handler->window = SDL_CreateWindow( handler->title.c_str(),
-    										SDL_WINDOWPOS_CENTERED, 
-    										SDL_WINDOWPOS_CENTERED, 
-    										handler->width, 
-    										handler->height, 
-    										handler->screenMode );
-    	if(handler->window == NULL){
-    		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-        	success = false;
-    	}else{
-    		handler->renderer = SDL_CreateRenderer(handler->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    		if( handler->renderer == NULL )
-	        {
-	            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-	            success = false;
-	        }else{
-	        	//SDL_RenderSetLogicalSize(handler->renderer, handler->width, handler->height);
-	        	//SDL_SetRenderDrawColor(handler->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	        }
-    	}
-    	return success;
+//METHODS
+bool Display::Init(std::string _title, int _width, int _height) {
+	bool success = true;
+	SDL_DisplayMode current; 
+	int should_be_zero = SDL_GetCurrentDisplayMode(0, &current); 
+    if(should_be_zero != 0)
+	    printf("Could not get display mode for video display #%d: %s", 0, SDL_GetError());
+    else{
+    	this->width = (DEFAULT_WIDTH == _width) ? current.w : _width;
+    	this->height = (DEFAULT_HEIGHT == _height) ? current.h : _height;
+    	this->screenMode = ((DEFAULT_WIDTH == _width) && (DEFAULT_HEIGHT == _height)) ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN;
+    }
+	this->title = _title;
+	SDL_Color color = {255, 165, 0, 255};
+	this->backgroundColor = color;
+	this->window = SDL_CreateWindow( this->title.c_str(),
+										SDL_WINDOWPOS_CENTERED, 
+										SDL_WINDOWPOS_CENTERED, 
+										this->width, 
+										this->height, 
+										this->screenMode );
+	if(this->window == NULL){
+		printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+    	success = false;
+	}else{
+		this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		if( this->renderer == NULL )
+        {
+            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+            success = false;
+        }else{
+        	SDL_RenderSetLogicalSize(this->renderer, this->width, this->height);
+        	//SDL_SetRenderDrawColor(this->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        }
 	}
+	return success;
+}
 
-	static void deleteDisplay(Display* display){
-		if(display->renderer){
-			SDL_DestroyRenderer(display->renderer);
-			display->renderer = NULL;
-		}
-		if(display->window){
-			SDL_DestroyWindow(display->window);
-			display->window = NULL;
-		}
+void Display::Delete(){
+	if(this->renderer){
+		SDL_DestroyRenderer(this->renderer);
+		this->renderer = NULL;
 	}
+	if(this->window){
+		SDL_DestroyWindow(this->window);
+		this->window = NULL;
+	}
+}
 
-	static void fillDisplay(Display* handler, SDL_Color color){
-		SDL_SetRenderDrawColor(handler->renderer, color.r, color.g, color.b, color.a);
-		SDL_RenderClear(handler->renderer);
-	}
+void Display::Fill(SDL_Color color){
+	SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
+	SDL_RenderClear(this->renderer);
+}
 
-	static void clearDisplay(Display* handler){
-		fillDisplay(handler, handler->backgroundColor);
-	}
+void Display::Clear(){
+	Fill(this->backgroundColor);
+}
 
-	static void refreshWindow(Display* handler){
-		SDL_RenderPresent(handler->renderer);
-	}
-};
+void Display::Refresh(){
+	SDL_RenderPresent(this->renderer);
+}
