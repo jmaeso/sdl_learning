@@ -12,8 +12,8 @@
 #include "Display.h"
 #include "constants.cpp"
 #include "Sprite.h"
-#include "Vec2.cpp"
-
+#include "Vec2.h"
+#include "MenuScene.h"
 
 int main( int argc, char* args[] ){
 
@@ -24,12 +24,7 @@ int main( int argc, char* args[] ){
 
 	bool quit = false;
 
-	//Texture texture(std::string("../resources/image.bmp"), display.renderer);
-	Vec2 position{0, 0};
-
-	Sprite bg(std::string("../resources/image.png"), &display, position);
-    bg.Center(); 
-    
+    MenuScene menu(&display); 
 
     SDL_Event e;
     //While application is running
@@ -52,10 +47,10 @@ int main( int argc, char* args[] ){
                 }
             }
         }
-    	bg.update(); //Sprite update
+    	menu.Update();
         if(&display){
         	display.Clear();
-        	bg.draw(); //Sprite render
+        	menu.Draw();
         	display.Refresh();
     	}
     }

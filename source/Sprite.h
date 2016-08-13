@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
-#include "Vec2.cpp"
+#include "Vec2.h"
 #include <string>
 #include "Display.h"
 
@@ -22,13 +22,13 @@ public:
 
 	Sprite();
 	Sprite(const Sprite &copy);
-	Sprite(std::string path, Display* _display, Vec2 _position);
+	Sprite(std::string path, Display* _display);
 	~Sprite();
 	void free();
 
 	bool loadTexture(std::string path);
-	void draw();
-	void update();
+	void Draw();
+	void Update();
 
 	void Center();
 	void CenterX();

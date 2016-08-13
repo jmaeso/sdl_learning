@@ -6,13 +6,12 @@ Sprite::Sprite(){
 
 }
 
-Sprite::Sprite(std::string path, Display* _display, Vec2 _position){
+Sprite::Sprite(std::string path, Display* _display){
 	texture = 0;
 	display = _display;
 	width = 0;
 	height = 0;
-	position.x = _position.x;
-	position.y = _position.y;
+	position = {0, 0};
 	scale = 1.0f;
 	angle = 0.0f;
 	if(!loadTexture(path)){
@@ -57,11 +56,11 @@ bool Sprite::loadTexture(std::string path){
 	return texture != NULL;
 }
 
-void Sprite::draw(){
+void Sprite::Draw(){
 	SDL_RenderCopyEx(display->renderer, texture, NULL, &destination, angle, NULL, flip);
 }
 
-void Sprite::update(){
+void Sprite::Update(){
 	destination.w = width;
 	destination.h = height;
 	if(scale != 1.0f){
