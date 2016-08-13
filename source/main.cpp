@@ -20,7 +20,7 @@ int main( int argc, char* args[] ){
 	initializeApp();
 
 	Display display;
-	display.Init(std::string("Hello SDL!"), 400, 400); 
+	display.Init(std::string("Hello SDL!"), DEFAULT_WIDTH, DEFAULT_HEIGHT); 
 
 	bool quit = false;
 
