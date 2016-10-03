@@ -15,8 +15,8 @@ before_install:
   - mkdir bin
 
 install:
-  - sudo apt-get install -qq g++-5
-  - export CXX="g++-5"
+  - sudo apt-get install -qq g++-6
+  - export CXX="g++-6"
 
 script:
   - make
