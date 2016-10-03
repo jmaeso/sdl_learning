@@ -2,7 +2,7 @@
 OBJS = source/*.cpp
 
 #CC specifies which compiler we're using
-CC = clang++
+CXX = clang++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
@@ -16,4 +16,4 @@ OBJ_NAME = ./bin/hello_sdl.exe
 
 #This is the target that compiles our executable
 all: $(OBJS)
-	$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+	$(CXX) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
