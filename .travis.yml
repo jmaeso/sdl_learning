@@ -4,8 +4,8 @@ sudo: required
 
 dist: precise
 
-notifications:
-  email: false
+branches:
+  only: master
 
 matrix:
   include:
@@ -14,7 +14,6 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - ppa:zoogie/sdl2-snapshots
             - llvm-toolchain-precise-3.8
           packages:
             - clang-3.8
