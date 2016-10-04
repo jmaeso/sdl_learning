@@ -11,11 +11,11 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - zoogie/sdl2-snapshots
-            - llvm-toolchain-precise-3.7
+            - ppa:zoogie/sdl2-snapshots
+            - llvm-toolchain-precise-3.8
           packages:
-            - clang++-3.7
-          env: COMPILER=clang++-3.7
+            - clang++-3.8
+          env: COMPILER=clang++-3.8
 
 before_install:
   - sudo apt-get update -qq
