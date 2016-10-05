@@ -2,20 +2,25 @@
 
 #include <string>
 #include "Sprite.h"
-#include "SDL2/SDL_TTF.h"
+#include "SDL2/SDL_ttf.h"
+#include "Vec2.h"
 
 class Button {
 public:
-	Sprite sprite;
+	Display* display = nullptr;
+	Sprite* sprite = nullptr;
 	SDL_Rect rect;
-	SDL_Color buttonColor;
-	SDL_Color textColor;
+	SDL_Color buttonColor = {255, 255, 255, 255};
+	SDL_Color textColor = {0, 0, 0, 255};
 	std::string text;
+	Vec2 position = {0, 0};
+	int width = 10;
+	int height = 10;
 
 	Button();
-	Button(int x, int y, int width, int height, SDL_Color color);
-	Button(int x, int y, Sprite sprite);
+	Button(Display* display, Sprite sprite);
 
-
-	bool isHover(int cursorX, int cursorY);
-}
+	bool isHover(Vec2 cursorPosition);
+	void Draw();
+	void Update();
+};
