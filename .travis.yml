@@ -29,5 +29,4 @@ before_install:
 
 script:
   - mkdir bin
-  - CXX=clang++-3.8
-  - make
+  - export CXX=clang++-3.8 make
