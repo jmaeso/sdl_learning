@@ -6,14 +6,8 @@ Sprite::Sprite(){
 
 }
 
-Sprite::Sprite(std::string path, Display* _display){
-	texture = 0;
+Sprite::Sprite(Display* _display, std::string path){
 	display = _display;
-	width = 0;
-	height = 0;
-	position = {0, 0};
-	scale = 1.0f;
-	angle = 0.0f;
 	if(!loadTexture(path)){
 		printf("Texture could not be created.\n");
 	}
@@ -71,8 +65,14 @@ void Sprite::Update(){
 	destination.y = position.y;
 }
 
+void Sprite::SetTexture(std::string path){
+	if(!loadTexture(path)){
+		printf("Texture could not be created.\n");
+	}
+}
+
 void Sprite::Center(){
-	position = {(display->width / 2) - (this->width/ 2), (display->height / 2) - (this->height / 2)};  
+	position = {(display->width / 2) - (this->width/ 2), (display->height / 2) - (this->height / 2)};
 }
 
 void Sprite::CenterX(){
