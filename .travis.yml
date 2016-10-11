@@ -5,7 +5,7 @@ sudo: required
 dist: precise
 
 branches:
-  only: travis_testing
+  only: master
 
 matrix:
   include:

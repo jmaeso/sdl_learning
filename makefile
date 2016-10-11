@@ -2,7 +2,7 @@
 OBJS = source/*.cpp
 
 #CC specifies which compiler we're using
-CXX ?= clang++-3.8
+CXX = clang++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
