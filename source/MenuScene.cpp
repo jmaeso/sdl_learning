@@ -9,9 +9,9 @@ MenuScene::MenuScene(Display* _display){
 	background.Center();
 
 	button.display = _display;
-	button.position = {200, 200};
-	button.width = 100;
-	button.height = 25;
+	button.width = 400;
+	button.height = 75;
+	button.position = {(_display->width/2) - (button.width/2), (int)(_display->height * 0.85f)};
 }
 
 MenuScene::~MenuScene(){
